@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Import" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<Import Project="..\Common.props" />
+
+	<Target Name="Import" DependsOnTargets="NugetInstall" />
+
+	<Target Name="NugetInstall">
+		<MakeDir Directories="$(PkgRoot)" />
+		<Exec WorkingDirectory="$(PkgRoot)" Command="nuget install %(Nuget.Identity) -Source %(Nuget.Source) -Version %(Nuget.Version)" />
+	</Target>
+
+	<Target Name="Clean">
+		<RemoveDir Directories="$(PkgRoot)" />
+	</Target>
+
+</Project>

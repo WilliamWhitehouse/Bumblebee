@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
+
+	<!-- Default configuration -->
+	<PropertyGroup>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+	</PropertyGroup>
+
+	<!-- Common paths -->
+	<PropertyGroup>
+		<SrcRoot>$(MSBuildThisFileDirectory)</SrcRoot>
+		<GenRoot>$(SrcRoot)\..\gen</GenRoot>
+		<OutRoot>$(SrcRoot)\..\out</OutRoot>
+		<PkgRoot>$(SrcRoot)\..\pkg</PkgRoot>
+		<IntermediateOutputPath>$(GenRoot)\$(Platform)\$(Configuration)\$(AssemblyName)</IntermediateOutputPath>
+		<OutputPath>$(OutRoot)\$(Platform)\$(Configuration)\$(AssemblyName)</OutputPath>
+	</PropertyGroup>
+
+	<!-- Common settings -->
+	<PropertyGroup>
+		<TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+		<TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.15063.0</TargetPlatformVersion>
+		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+	</PropertyGroup>
+
+	<!-- Packages -->
+	<PropertyGroup>
+		<PkgSystemCommandLine>$(PkgRoot)\System.CommandLine.0.1.0-e180119-1</PkgSystemCommandLine>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Nuget Include="System.CommandLine">
+			<Source>https://dotnet.myget.org/F/dotnet-corefxlab/api/v3/index.json</Source>
+			<Version>0.1.0-e180119-1</Version>
+		</Nuget>
+	</ItemGroup>
+
+	<!-- Package references -->
+	<ItemGroup>
+		<Reference Include="System.CommandLine">
+			<HintPath>$(PkgSystemCommandLine)\lib\netstandard1.5\System.CommandLine.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+</Project>

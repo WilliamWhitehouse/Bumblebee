@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<ProjectGuid>{c6b7eda9-678f-4d9d-88bb-2f897758347f}</ProjectGuid>
+		<OutputType>AppContainerExe</OutputType>
+		<AssemblyName>Bumblebee</AssemblyName>
+	</PropertyGroup>
+	<Import Project="..\Common.props" />
+	<ItemGroup>
+		<Compile Include="Program.cs" />
+	</ItemGroup>
+	<Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+</Project>
