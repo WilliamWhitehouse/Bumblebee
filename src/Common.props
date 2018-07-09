@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
 	<!-- Default configuration -->
 	<PropertyGroup>
@@ -11,19 +10,22 @@
 	<!-- Common paths -->
 	<PropertyGroup>
 		<SrcRoot>$(MSBuildThisFileDirectory)</SrcRoot>
-		<GenRoot>$(SrcRoot)\..\gen</GenRoot>
-		<OutRoot>$(SrcRoot)\..\out</OutRoot>
-		<PkgRoot>$(SrcRoot)\..\pkg</PkgRoot>
+		<EnlistmentRoot>$([System.IO.Path]::GetFullPath('$(SrcRoot)\..'))</EnlistmentRoot>
+		<GenRoot>$(EnlistmentRoot)\gen</GenRoot>
+		<OutRoot>$(EnlistmentRoot)\out</OutRoot>
+		<PkgRoot>$(EnlistmentRoot)\pkg</PkgRoot>
 		<IntermediateOutputPath>$(GenRoot)\$(Platform)\$(Configuration)\$(AssemblyName)</IntermediateOutputPath>
+		<BaseIntermediateOutputPath>$(IntermediateOutputPath)</BaseIntermediateOutputPath>
 		<OutputPath>$(OutRoot)\$(Platform)\$(Configuration)\$(AssemblyName)</OutputPath>
 	</PropertyGroup>
 
 	<!-- Common settings -->
 	<PropertyGroup>
-		<TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-		<TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.15063.0</TargetPlatformVersion>
+		<TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
+		<TargetPlatformMinVersion>$(TargetPlatformVersion)</TargetPlatformMinVersion>
 		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+		<PlatformTarget>$(Platform)</PlatformTarget>
 	</PropertyGroup>
 
 	<!-- Packages -->
@@ -38,10 +40,13 @@
 		</Nuget>
 	</ItemGroup>
 
-	<!-- Package references -->
+	<!-- References -->
 	<ItemGroup>
 		<Reference Include="System.CommandLine">
 			<HintPath>$(PkgSystemCommandLine)\lib\netstandard1.5\System.CommandLine.dll</HintPath>
 		</Reference>
 	</ItemGroup>
+
+	<Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
+
 </Project>

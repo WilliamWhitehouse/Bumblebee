@@ -1,5 +1,8 @@
 @echo off
+setlocal
 pushd %~dp0
+
+rmdir /s /q ..\gen ..\out
 call :build-project Import\Import.csproj %*
 call :build-project Hive\Hive.csproj %*
 call :build-project Bumblebee\Bumblebee.csproj %*
@@ -8,7 +11,7 @@ goto:eof
 
 :build-project %1=project-path %*=options
 call :banner Building %1
-msbuild /nologo %*
+msbuild /nologo /restore /verbosity:minimal %*
 goto:eof
 
 :banner %*=output

@@ -1,13 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" 
+	xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
 	<PropertyGroup>
-		<ProjectGuid>{4c5600aa-30e0-4f78-9547-453a5cfad97b}</ProjectGuid>
 		<OutputType>Exe</OutputType>
 		<AssemblyName>Hive</AssemblyName>
+		<TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
 	</PropertyGroup>
+
 	<Import Project="..\Common.props" />
+
 	<ItemGroup>
 		<Compile Include="Program.cs" />
+		<Reference Include="Windows">
+			<HintPath>$(ProgramFiles)\Windows Kits\10\UnionMetadata\$(TargetPlatformVersion)\Windows.winmd</HintPath>
+		</Reference>
 	</ItemGroup>
+
 	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>
